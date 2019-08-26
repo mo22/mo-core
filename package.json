@@ -1,17 +1,20 @@
 {
   "name": "mo-core",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "assorted tools for typescript",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "package.json",
+    "src/*",
+    "lib/*",
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mo22/mo-core.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Moritz Moeller <mm@mxs.de>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mo22/mo-core/issues"
   },
