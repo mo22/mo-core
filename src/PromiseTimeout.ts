@@ -1,5 +1,7 @@
 // PromiseTimeoutError ?!
 
+
+
 export function timeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return Promise.race([
     promise,

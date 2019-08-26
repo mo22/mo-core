@@ -1,30 +1,38 @@
 import { Releaseable } from './Releaseable';
 import { Future } from './Future';
 
+
+
 export type EventUnsubscribeFunc = () => void;
 export type EventEmitFunc<T> = (value: T) => void;
 export type EventSubscribeFunc<T> = (emit: EventEmitFunc<T>) => EventUnsubscribeFunc;
 export type EventListenerFunc<T> = (value: T) => void;
 
+
+
 export class Event<T> implements AsyncIterable<T> {
-  private _subscribe: EventSubscribeFunc<T>;
-  private _unsubscribe?: EventUnsubscribeFunc;
-  private _listeners = new Set<EventListenerFunc<T>>();
+  protected _subscribe: EventSubscribeFunc<T>;
+  protected _unsubscribe?: EventUnsubscribeFunc;
+  protected _listeners = new Set<EventListenerFunc<T>>();
 
   public constructor(subscribe: EventSubscribeFunc<T>) {
     this._subscribe = subscribe;
   }
 
-  private _start() {
+  protected _emit(value: T) {
+    for (const listener of this._listeners) {
+      listener(value);
+    }
+  }
+
+  protected _start() {
     if (this._unsubscribe) return;
     this._unsubscribe = this._subscribe((value) => {
-      for (const listener of this._listeners) {
-        listener(value);
-      }
+      this._emit(value);
     });
   }
 
-  private _stop() {
+  protected _stop() {
     if (!this._unsubscribe) return;
     this._unsubscribe();
     this._unsubscribe = undefined;
@@ -152,6 +160,22 @@ export class Event<T> implements AsyncIterable<T> {
 
 }
 
+
+
 export class StatefulEvent<T> extends Event<T> {
-  // initial value?
+  private _value: T;
+
+  public constructor(initial: T, subscribe: EventSubscribeFunc<T>) {
+    super(subscribe);
+    this._value = initial;
+  }
+
+  public get value() {
+    return this._value;
+  }
+
+  protected _emit(value: T) {
+    this._value = value;
+    super._emit(value);
+  }
 }
