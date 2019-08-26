@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "rootDir": "src",
+    "sourceMap": true,
+    "removeComments": false,
+    "strict": true,
+    "lib": [ "es6" ],
+    "declaration": true
+  },
+  "compileOnSave": true
+}
