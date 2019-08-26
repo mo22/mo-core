@@ -163,19 +163,15 @@ export class Event<T> implements AsyncIterable<T> {
 
 
 export class StatefulEvent<T> extends Event<T> {
-  private _value: T;
+  public value: T;
 
   public constructor(initial: T, subscribe: EventSubscribeFunc<T>) {
     super(subscribe);
-    this._value = initial;
-  }
-
-  public get value() {
-    return this._value;
+    this.value = initial;
   }
 
   protected _emit(value: T) {
-    this._value = value;
+    this.value = value;
     super._emit(value);
   }
 }

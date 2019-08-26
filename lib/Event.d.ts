@@ -38,8 +38,7 @@ export declare class Event<T> implements AsyncIterable<T> {
     removeListener(name: 'event', listener: EventListenerFunc<T>): this;
 }
 export declare class StatefulEvent<T> extends Event<T> {
-    private _value;
+    value: T;
     constructor(initial: T, subscribe: EventSubscribeFunc<T>);
-    readonly value: T;
     protected _emit(value: T): void;
 }
