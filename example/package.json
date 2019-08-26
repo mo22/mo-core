@@ -13,6 +13,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "mo-core": "file:.."
+    "mo-core": "file:..",
+    "rxjs": "^6.5.2"
   }
 }
