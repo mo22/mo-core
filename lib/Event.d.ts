@@ -3,7 +3,7 @@ export declare type EventUnsubscribeFunc = () => void;
 export declare type EventEmitFunc<T> = (value: T) => void;
 export declare type EventSubscribeFunc<T> = (emit: EventEmitFunc<T>) => EventUnsubscribeFunc;
 export declare type EventListenerFunc<T> = (value: T) => void;
-export declare class Event<T> implements AsyncIterable<T> {
+export declare class Event<T> {
     protected _subscribe: EventSubscribeFunc<T>;
     protected _unsubscribe?: EventUnsubscribeFunc;
     protected _listeners: Set<EventListenerFunc<T>>;
@@ -20,15 +20,7 @@ export declare class Event<T> implements AsyncIterable<T> {
             unsubscribe: () => void;
         };
     };
-    [Symbol.observable](): {
-        subscribe: (observer?: {
-            next?: ((value: T) => void) | undefined;
-        } | ((value: T) => void) | null | undefined) => {
-            unsubscribe: () => void;
-        };
-    };
     wait(): Promise<T>;
-    [Symbol.asyncIterator](): AsyncIterator<T>;
     addEventListener(_name: 'event', listener: EventListenerFunc<T>): Releaseable;
     removeEventListener(_name: 'event', listener: EventListenerFunc<T>): void;
     on(name: 'event', listener: EventListenerFunc<T>): this;

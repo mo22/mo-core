@@ -10,7 +10,8 @@ export type EventListenerFunc<T> = (value: T) => void;
 
 
 
-export class Event<T> implements AsyncIterable<T> {
+// implements AsyncIterable<T> ?
+export class Event<T> {
   protected _subscribe: EventSubscribeFunc<T>;
   protected _unsubscribe?: EventUnsubscribeFunc;
   protected _listeners = new Set<EventListenerFunc<T>>();
@@ -76,7 +77,7 @@ export class Event<T> implements AsyncIterable<T> {
     return this._createSubscribable();
   }
 
-  public [Symbol.observable]() {
+  public [(Symbol as any).observable]() {
     return this._createSubscribable();
   }
 
@@ -91,7 +92,8 @@ export class Event<T> implements AsyncIterable<T> {
     });
   }
 
-  public [Symbol.asyncIterator](): AsyncIterator<T> {
+  // AsyncIterator<T>
+  public [(Symbol as any).asyncIterator]() {
     let future = new Future<T>();
     const sub = this.subscribe((value) => {
       future.resolve(value);
