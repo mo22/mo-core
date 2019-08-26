@@ -20,3 +20,4 @@ methods.
 - [ ] import from 'mo-core/Mutex' ?
 - [ ] finish inline docs
 - [ ] finish this docs
+- [ ] see also: https://github.com/sindresorhus/p-timeout
