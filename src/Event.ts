@@ -165,15 +165,19 @@ export class Event<T> {
 
 
 export class StatefulEvent<T> extends Event<T> {
-  public value: T;
+  private _value: T;
+
+  public get value() {
+    return this._value;
+  }
 
   public constructor(initial: T, subscribe: EventSubscribeFunc<T>) {
     super(subscribe);
-    this.value = initial;
+    this._value = initial;
   }
 
   protected _emit(value: T) {
-    this.value = value;
+    this._value = value;
     super._emit(value);
   }
 }

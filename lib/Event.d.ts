@@ -30,7 +30,8 @@ export declare class Event<T> {
     removeListener(name: 'event', listener: EventListenerFunc<T>): this;
 }
 export declare class StatefulEvent<T> extends Event<T> {
-    value: T;
+    private _value;
+    readonly value: T;
     constructor(initial: T, subscribe: EventSubscribeFunc<T>);
     protected _emit(value: T): void;
 }
