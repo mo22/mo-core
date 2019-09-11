@@ -180,4 +180,8 @@ export class StatefulEvent<T> extends Event<T> {
     this._value = value;
     super._emit(value);
   }
+
+  public UNSAFE_setValue(value: T) {
+    this._emit(value);
+  }
 }

@@ -34,4 +34,5 @@ export declare class StatefulEvent<T> extends Event<T> {
     readonly value: T;
     constructor(initial: T, subscribe: EventSubscribeFunc<T>);
     protected _emit(value: T): void;
+    UNSAFE_setValue(value: T): void;
 }
