@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mo22/mo-core#readme",
   "devDependencies": {
-    "@types/node": "^12.7.4",
-    "typescript": "^3.6.2"
+    "@types/node": "^12.12.3",
+    "typescript": "^3.6.4"
   }
 }
