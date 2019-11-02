@@ -5,24 +5,47 @@ export class Future<T> implements Promise<T> {
   private _promise: Promise<T>;
   private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
   private _reject?: (reason?: any) => void;
+  private _value?: T;
+  private _error?: any;
+  private _resolved = false;
 
-  constructor() {
+  public constructor() {
     this._promise = new Promise<T>((resolve, reject) => {
       this._resolve = resolve;
       this._reject = reject;
     });
+    this._promise.then((val) => {
+      this._value = val;
+      this._resolved = true;
+    });
+    this._promise.catch((val) => {
+      this._error = val;
+      this._resolved = true;
+    });
   }
 
-  get promise(): Promise<T> {
+  public get promise(): Promise<T> {
     return this._promise;
   }
 
-  get reject() {
+  public get reject() {
     return this._reject!;
   }
 
-  get resolve() {
+  public get resolve() {
     return this._resolve!;
+  }
+
+  public get resolved() {
+    return this._resolved;
+  }
+
+  public get value(): T|undefined {
+    return this._value;
+  }
+
+  public get error(): T|undefined {
+    return this._error;
   }
 
   // make it possible to use this directly as promise
