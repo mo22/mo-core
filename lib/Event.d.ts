@@ -31,7 +31,7 @@ export declare class Event<T> {
 }
 export declare class StatefulEvent<T> extends Event<T> {
     private _value;
-    readonly value: T;
+    get value(): T;
     constructor(initial: T, subscribe: EventSubscribeFunc<T>);
     protected _emit(value: T): void;
     UNSAFE_setValue(value: T): void;
