@@ -1,6 +1,6 @@
 {
   "name": "mo-core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "assorted tools for typescript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mo22/mo-core#readme",
   "devDependencies": {
-    "@types/node": "^12.12.6",
-    "typescript": "^3.7.2"
+    "@types/node": "^14.0.27",
+    "typescript": "^3.9.7"
   }
 }
