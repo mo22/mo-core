@@ -11,7 +11,7 @@ export declare class Future<T> implements Promise<T> {
     constructor();
     get promise(): Promise<T>;
     get reject(): (reason?: any) => void;
-    get resolve(): (value?: T | PromiseLike<T> | undefined) => void;
+    get resolve(): (value: T | PromiseLike<T>) => void;
     get resolved(): boolean;
     get value(): T | undefined;
     get error(): T | undefined;

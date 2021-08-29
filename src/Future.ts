@@ -3,7 +3,7 @@
  */
 export class Future<T> implements Promise<T> {
   private _promise: Promise<T>;
-  private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
+  private _resolve?: (value: T | PromiseLike<T>) => void;
   private _reject?: (reason?: any) => void;
   private _value?: T;
   private _error?: any;
